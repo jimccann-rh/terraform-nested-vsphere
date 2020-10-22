@@ -63,3 +63,7 @@ variable "vcsa_network_gateway" {
 variable "vcsa_password" {
   type    = string
 }
+variable "esxi_root_password" {
+
+type = string
+}

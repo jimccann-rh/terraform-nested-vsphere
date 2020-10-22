@@ -1,3 +1,10 @@
+/*
+variable "esxi_ip_address" {
+  type = string
+}
+*/
+
+
 variable "vc_hostname" {
   type = string
 }
@@ -80,4 +87,10 @@ variable "sso_domain_name" {
 variable "vcsa_mount_path" {
   type    = string
   default = "/mnt/esxi/"
+}
+
+
+variable "esxi_root_password" {
+
+type = string
 }

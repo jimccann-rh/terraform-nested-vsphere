@@ -32,3 +32,41 @@ resource "local_file" "vcenter_config" {
     //command = "${var.vcsa_mount_path}/vcsa-cli-installer/lin64/vcsa-deploy install --verify-template-only --terse --accept-eula --acknowledge-ceip --no-ssl-certificate-verification ${path.module}/config.json"
   }
 }
+
+
+/*
+provider "vsphere" {
+  user                 = "administrator@${var.sso_domain_name}"
+  password             = var.sso_password
+  vsphere_server       = var.network_system_name
+  allow_unverified_ssl = true
+
+  alias = "nested"
+}
+
+resource "vsphere_datacenter" "nested_datacenter" {
+  //provider = vsphere.nested
+  name = "SDDC-Datacenter"
+
+  depends_on = [local_file.vcenter_config]
+}
+
+resource "vsphere_compute_cluster" "nested_cluster" {
+  //provider = vsphere.nested
+  name                 = "Cluster-1"
+  datacenter_id        = vsphere_datacenter.nested_datacenter.id
+  drs_enabled          = true
+  drs_automation_level = "fullyAutomated"
+}
+
+
+resource "vsphere_host" "h1" {
+  //provider = vsphere.nested
+  hostname = var.esxi_ip_address
+  username = "root"
+  password = var.esxi_root_password
+  cluster  = vsphere_compute_cluster.nested_cluster.id
+}
+*/
+
+

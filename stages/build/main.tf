@@ -1,4 +1,3 @@
-
 provider "vsphere" {
   user                 = var.vsphere_username
   password             = var.vsphere_password
@@ -17,7 +16,6 @@ resource "aws_route53_record" "a_record" {
   name    = var.vcsa_hostname
   records = [var.vcsa_ip_address]
 }
-
 
 data "vsphere_datacenter" "datacenter" {
   name = var.vsphere_datacenter
@@ -43,9 +41,18 @@ data "vsphere_virtual_machine" "template" {
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
+provider "vsphere" {
+  user                 = "administrator@vsphere.local"
+  password             = var.vcsa_password
+  vsphere_server       = "${var.vcsa_hostname}.${var.base_domain}"
+  allow_unverified_ssl = true
+
+  alias = "nested"
+}
+
 
 module "vcsa" {
-  source                = "./modules/vcenter"
+  source                = "../../modules/vcenter"
   vc_hostname           = var.vsphere_url
   vc_username           = var.vsphere_username
   vc_password           = var.vsphere_password
@@ -60,11 +67,16 @@ module "vcsa" {
   network_system_name   = aws_route53_record.a_record.fqdn
   os_password           = var.vcsa_password
   sso_password          = var.vcsa_password
+
+esxi_root_password = var.esxi_root_password
+
+  providers = {
+    vsphere = vsphere.nested
+  }
 }
 
-/*
 module "esxi" {
-  source = "./modules/esxi"
+  source = "../../modules/esxi"
 
   resource_pool = data.vsphere_compute_cluster.cluster.resource_pool_id
   datastore     = data.vsphere_datastore.datastore.id
@@ -78,4 +90,3 @@ module "esxi" {
 output "esxi_ip_address" {
   value = module.esxi.ip_address
 }
-*/

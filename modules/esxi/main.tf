@@ -12,6 +12,9 @@ resource "vsphere_virtual_machine" "vm" {
   network_interface {
     network_id = var.network
   }
+  network_interface {
+    network_id = var.network
+  }
 
   //this is so dumb that I have its required to have a disk here
 
