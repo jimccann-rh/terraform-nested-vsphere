@@ -26,4 +26,5 @@ terraform apply -auto-approve stages/config/
 
 ### TODO
 - Destroy vcsa appliance when `terraform destroy`
+- Enable MAC learn
 
