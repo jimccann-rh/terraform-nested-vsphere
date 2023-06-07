@@ -48,5 +48,10 @@ terraform apply -auto-approve stages/config/
 
 ### TODO
 - Destroy vcsa appliance when `terraform destroy`
-- Enable MAC learn
+- Enable MAC learn (create a unique port group for nested)
+
+
+This is need on each physical host if using vSAN
+
+ esxcli system settings advanced set -o /VSAN/FakeSCSIReservations -i 1
 
