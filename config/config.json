@@ -1,0 +1,9 @@
+{
+  "vcenters": [
+    "vcenter.sddc-44-236-21-251.vmwarevmc.com",
+    "vcs8e-vc.ocp2.dev.cluster.com",
+    "vcenter.ibmc.devcluster.openshift.com",
+    "vcenter.devqe.ibmc.devcluster.openshift.com"
+  ],
+  "esxiContentLibraryUrl": "https://download3.vmware.com/software/vmw-tools/lib.json"
+}

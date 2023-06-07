@@ -1,5 +1,27 @@
 # terraform-nested-vsphere
 
+Revamp
+
+
+1. Simplify - use only dhcp for vcenter
+2. Use nested content library
+3. Use content library for versions: https://download3.vmware.com/software/vmw-tools/items.json
+
+```
+$ cat ~/Downloads/items.json|jq '.items[].name'
+"Nested_ESXi7.0u3d_Appliance_Template_v1.0"
+"Nested_ESXi7.0u3k_Appliance_Template_v1.0"
+```
+4. Need build numbers to versions table
+5. vCenter ? blob, container
+
+
+
+
+
+
+
+
 
 ### Requirements
 
